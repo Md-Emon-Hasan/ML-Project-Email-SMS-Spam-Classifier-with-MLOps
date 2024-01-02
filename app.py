@@ -30,9 +30,9 @@ def transform_text(text):
 
 st.title('Email & SMS Spam Classifier\n Made By Emon Hasan')
 
-tfidf = pickle.load(open('C:/Users/emon1/OneDrive/Desktop/test/vectorizer.pkl','rb'))
+tfidf = pickle.load(open('vectorizer.pkl','rb'))
 
-model = pickle.load(open('C:/Users/emon1/OneDrive/Desktop/test/model.pkl','rb'))
+model = pickle.load(open('model.pkl','rb'))
 
 input_sms = st.text_input('Enter the Email/Message:')
 
