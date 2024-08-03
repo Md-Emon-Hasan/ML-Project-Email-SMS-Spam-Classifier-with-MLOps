@@ -2,7 +2,7 @@
 
 Welcome to the **Email Spam Classifier** machine learning project repository! This project focuses on classifying emails as spam or non-spam (ham) using various machine learning techniques.
 
-![email](https://github.com/Md-Emon-Hasan/ML-Project-Email-Spam-Classifier/issues/1#issue-2446303837)
+![email](https://github.com/user-attachments/assets/bb235a1a-ffcb-46a3-8023-2f1625f86fbf)
 
 ## 📋 Contents
 
