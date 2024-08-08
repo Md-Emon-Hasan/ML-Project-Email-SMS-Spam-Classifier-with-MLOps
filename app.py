@@ -32,6 +32,7 @@ model = pickle.load(open('model.pkl', 'rb'))
 
 # Streamlit app
 st.title("Email/SMS Spam Classifier")
+st.text('Made by Emon Hasan')
 
 input_sms = st.text_area("Enter the message")
 
