@@ -102,7 +102,7 @@ To run this project locally, follow these steps:
 
 ## 🌐 Demo
 
-Explore the live demo of the project [here](https://email-sms-classifier-by-emon.onrender.com) 
+Explore the live demo of the project [here](https://ml-project-email-spam-classifier-rkcfj3h45wryrzrndte8hp.streamlit.app/) 
 
 ---
 
