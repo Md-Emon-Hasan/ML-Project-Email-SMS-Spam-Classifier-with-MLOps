@@ -1,50 +1,66 @@
-import streamlit as st
+from flask import Flask
+from flask import render_template
+from flask import request
 import pickle
 import string
 import nltk
 from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
 from nltk.stem.porter import PorterStemmer
 
-# Ensure NLTK resources are downloaded
+app = Flask(__name__)
+
+# Ensure that the necessary NLTK resources are downloaded
 nltk.download('punkt')
 nltk.download('stopwords')
+nltk.download('punkt_tab')
+
+# Load the pre-trained model and vectorizer
+tfidf = pickle.load(open('./models/vectorizer.pkl', 'rb'))
+model = pickle.load(open('./models/model.pkl', 'rb'))
 
 ps = PorterStemmer()
 
+# Preprocess the text
 def transform_text(text):
     text = text.lower()
-    text = word_tokenize(text)  # Tokenize text
+    text = nltk.word_tokenize(text)
 
-    # Remove non-alphanumeric tokens and punctuation, then remove stopwords
-    text = [i for i in text if i.isalnum()]
-    text = [i for i in text if i not in stopwords.words('english')]
-    text = [i for i in text if i not in string.punctuation]
+    y = []
+    for i in text:
+        if i.isalnum():
+            y.append(i)
 
-    # Apply stemming
-    text = [ps.stem(i) for i in text]
+    text = y[:]
+    y.clear()
 
-    return " ".join(text)
+    for i in text:
+        if i not in stopwords.words('english') and i not in string.punctuation:
+            y.append(i)
 
-# Load pre-trained models
-tfidf = pickle.load(open('vectorizer.pkl', 'rb'))
-model = pickle.load(open('model.pkl', 'rb'))
+    text = y[:]
+    y.clear()
 
-# Streamlit app
-st.title("Email/SMS Spam Classifier")
-st.text('Made by Emon Hasan')
+    for i in text:
+        y.append(ps.stem(i))
 
-input_sms = st.text_area("Enter the message")
+    return " ".join(y)
 
-if st.button('Predict'):
-    # 1. Preprocess the input
-    transformed_sms = transform_text(input_sms)
-    # 2. Vectorize the input
-    vector_input = tfidf.transform([transformed_sms])
-    # 3. Predict
-    result = model.predict(vector_input)[0]
-    # 4. Display the result
-    if result == 1:
-        st.header("Spam")
-    else:
-        st.header("Not Spam")
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    result = None
+    input_sms = ""
+    if request.method == 'POST':
+        input_sms = request.form['message']
+        # 1. Preprocess the text
+        transformed_sms = transform_text(input_sms)
+        # 2. Vectorize the text
+        vector_input = tfidf.transform([transformed_sms])
+        # 3. Predict the result
+        result = model.predict(vector_input)[0]
+        # 4. Display the result
+        result = "Spam" if result == 1 else "Not Spam"
+    
+    return render_template('index.html', result=result, input_sms=input_sms)
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=5000)

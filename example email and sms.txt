@@ -1,0 +1,13 @@
+Not spam:
+1. Hi Team, just a quick reminder that we have a meeting scheduled for 10 AM tomorrow in the main conference room. Please make sure to bring your reports. Thanks!
+2. Hi John, I wanted to give you an update on the project. We’re on track to complete the deliverables by next week. Let me know if you need any additional information.
+3. Dear Customer, thank you for your purchase! Your order #123456 has been confirmed and will be shipped shortly. We appreciate your business!
+4. Just wanted to see if anyone is free this weekend. I'm thinking of going to the beach. Let me know if you're interested!
+5. 
+
+Spam:
+1. Congratulations! You've been selected as a lucky winner of a free 7-day Caribbean cruise. To claim your prize, click here.
+2. Dear User, your account has been suspended due to suspicious activity. Please verify your account immediately by clicking the link below to restore access. Failure to do so will result in permanent deactivation.
+3. You've been selected for an all-expenses-paid vacation! Don't miss out on this once-in-a-lifetime opportunity to relax in paradise. Click here to claim your free trip.
+4. Get 50% off your next purchase! Act now, this offer expires in 24 hours.
+5. We've detected suspicious activity on your account. To reactivate your account, please click here and provide your login information.

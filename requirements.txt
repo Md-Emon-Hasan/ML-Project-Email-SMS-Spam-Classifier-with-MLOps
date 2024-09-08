@@ -1,6 +1,6 @@
-streamlit
+flask
+gunicorn
 nltk
 scikit-learn
 scipy
-numpy
-pandas
+pytest
